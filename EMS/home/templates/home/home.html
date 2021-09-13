@@ -1,0 +1,79 @@
+{% extends 'home/base.html' %}
+{% block content %}
+    <style>
+        .snap-x {
+            scroll-snap-type: x mandatory;
+
+            scroll-behavior: smooth;
+            -webkit-overflow-scrolling: touch;
+        }
+
+        .snap-start {
+            scroll-snap-align: start;
+        }
+    </style>
+    <div class="flex flex-col items-center m-8">
+
+        <div class="w-full bg-white rounded overflow-x-hidden flex snap-x" style="height: 40vh">
+            {% for event in events %}
+            <div class="snap-start w-full h-full flex items-center justify-center text-white text-4xl font-bold flex-shrink-0 bg-black relative" id="slide-{{ event.4 }}">
+                <img src="{{ event.3 }}" class="h-full w-full object-cover absolute inset-0 z-10 opacity-25">
+                <h1 class="z-20 text-center"><a href="{% url 'events:view_event' event.2 %}">{{event.0}}</a></h1>
+            </div>
+            {% endfor %}
+            <!-- <div class="snap-start w-full h-full flex items-center justify-center text-white text-4xl font-bold flex-shrink-0 bg-blue-600" id="slide-1">
+                Slide 1
+            </div>
+            <div class="snap-start w-full h-full flex items-center justify-center text-white text-4xl font-bold flex-shrink-0 bg-green-600" id="slide-2">
+                Slide 2
+            </div>
+            <div class="snap-start w-full h-full flex items-center justify-center text-white text-4xl font-bold flex-shrink-0 bg-red-600" id="slide-3">
+                Slide 3
+            </div>
+            <div class="snap-start w-full h-full flex items-center justify-center text-white text-4xl font-bold flex-shrink-0 bg-orange-600" id="slide-4">
+                Slide 4
+            </div>
+            <div class="snap-start w-full h-full flex items-center justify-center text-white text-4xl font-bold flex-shrink-0 bg-purple-600" id="slide-5">
+                Slide 5
+            </div>
+            <div class="snap-start w-full h-full flex items-center justify-center text-white text-4xl font-bold flex-shrink-0 bg-black relative" id="slide-6">
+                <img src="https://images.unsplash.com/photo-1556740738-b6a63e27c4df?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=448&q=80" class="h-full w-full object-cover absolute inset-0 z-10 opacity-25">
+                <h1 class="z-20 text-center">Any kind of content here, images too!</h1>
+            </div> -->
+        </div>
+
+        <div class="flex mt-8">
+            <a class="w-8 mr-1 h-8 text-gray-700 rounded-full bg-white flex justify-center items-center" href="#slide-1">1</a>
+            <a class="w-8 mr-1 h-8 text-gray-700 rounded-full bg-white flex justify-center items-center" href="#slide-2">2</a>
+            <a class="w-8 mr-1 h-8 text-gray-700 rounded-full bg-white flex justify-center items-center" href="#slide-3">3</a>
+            <a class="w-8 mr-1 h-8 text-gray-700 rounded-full bg-white flex justify-center items-center" href="#slide-4">4</a>
+            <a class="w-8 h-8 text-gray-700 rounded-full bg-white flex justify-center items-center" href="#slide-5">5</a>
+            <a class="w-8 h-8 text-gray-700 rounded-full bg-white flex justify-center items-center" href="#slide-6">6</a>
+        </div>
+    </div>
+    <section class="text-gray-600 body-font">
+        <div class="container px-5 py-24 mx-auto">
+            <div class="flex flex-wrap w-full mb-20">
+                <div class="lg:w-1/2 w-full mb-6 lg:mb-0">
+                    <h1 class="sm:text-3xl text-2xl font-medium title-font mb-2 text-gray-900">Events</h1>
+                    <div class="h-1 w-20 bg-indigo-500 rounded"></div>
+                </div>
+            </div>
+            <div class="flex flex-wrap -m-4">
+                {% for event in events %}
+                <div class="xl:w-1/4 md:w-1/2 p-4">
+                    <div class="bg-gray-100 p-6 rounded-lg">
+                        <img class="h-40 rounded w-full object-cover object-center mb-6"
+                            src="{{ event.3 }}" alt="content">
+                        <h3 class="text-lg text-gray-900 font-medium title-font mb-4"><a
+                                href="{% url 'events:view_event' event.2%}">{{ event.0 }}</a></h3>
+                        <p class="leading-relaxed text-base">{{ event.1 }}</p>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+    </section>
+    
+
+{% endblock %}
